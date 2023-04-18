@@ -184,8 +184,10 @@ function createTrack() {
   });
   // Tempo corrente in minuti e secondi
   audio.addEventListener("timeupdate", () => {
-    if (audio.currentTime < 10) {
-      currentTime.innerHTML = `0:0${Math.floor(audio.currentTime % 60)}`;
+    if (audio.currentTime < 10 + 60 * Math.floor(audio.currentTime / 60)) {
+      currentTime.innerHTML = `${Math.floor(
+        audio.currentTime / 60
+      )}:0${Math.floor(audio.currentTime % 60)}`;
     } else {
       currentTime.innerHTML = `${Math.floor(
         audio.currentTime / 60
