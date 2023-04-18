@@ -26,3 +26,7 @@
     border-radius: 275px;
   }
 }
+.player-btn {
+  width: 60px;
+  height: 60px;
+}

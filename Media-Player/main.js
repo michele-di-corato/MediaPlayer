@@ -115,13 +115,16 @@ function createTrack() {
               <p id="finalTime" class="text-warning"></p>
             </div>
             <div class="d-flex justify-content-between mt-3">
-              <button id="prev" class="btn btn-outline-warning fs-3">
+              <button id="prev" class="btn btn-outline-warning fs-3 player-btn">
                 <i class="fa-solid fa-backward"></i>
               </button>
-              <button id="play" class="btn btn-outline-warning fs-3">
+              <button id="stop" class="btn btn-outline-warning fs-3 player-btn">
+              <i class="fa-solid fa-stop"></i>
+              </button>
+              <button id="play" class="btn btn-outline-warning fs-3 player-btn">
                 <i class="fa-solid fa-play"></i>
               </button>
-              <button id="next" class="btn btn-outline-warning fs-3">
+              <button id="next" class="btn btn-outline-warning fs-3 player-btn">
                 <i class="fa-solid fa-forward"></i>
               </button>
             </div>
@@ -132,6 +135,7 @@ function createTrack() {
   let prev = document.querySelector("#prev");
   let next = document.querySelector("#next");
   let play = document.querySelector("#play");
+  let stop = document.querySelector("#stop");
 
   //   Funzione Play-Pause
   play.addEventListener("click", () => {
@@ -143,6 +147,12 @@ function createTrack() {
       play.innerHTML = `<i class="fa-solid fa-play"></i>`;
     }
   });
+  // Funzione Stop
+  stop.addEventListener("click", () => {
+    audio.pause();
+    audio.currentTime = 0;
+    play.innerHTML = `<i class="fa-solid fa-play"></i>`;
+  });
   // Funzione Next
   next.addEventListener("click", () => {
     if (counter < tracks.length - 1) {
@@ -153,6 +163,7 @@ function createTrack() {
     createCover();
     createTrack();
   });
+  // Funzione Previous
   prev.addEventListener("click", () => {
     if (counter > 0) {
       counter--;
