@@ -60,6 +60,6 @@ let container = document.querySelector(".row");
 posts.forEach((element) => {
   let article = document.createElement("div");
   article.classList.add("card", "col-4", "mx-5", "my-3");
-  article.innerHTML = `<h2>${element.title}</h2><p>${element.body}`;
+  article.innerHTML = `<h2>${element.title}</h2><p>${element.body}</p>`;
   container.appendChild(article);
 });
