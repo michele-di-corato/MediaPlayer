@@ -103,11 +103,11 @@ function createTrack() {
               class="progress"
               role="progressbar"
               aria-label="Basic example"
-              aria-valuenow="75"
+              aria-valuenow="0"
               aria-valuemin="0"
               aria-valuemax="100"
             >
-              <div class="progress-bar w-75"></div>
+              <div class="progress-bar"></div>
             </div>
             <!-- Tempi -->
             <div class="d-flex justify-content-between">
@@ -164,11 +164,24 @@ function createTrack() {
   });
   let currentTime = document.querySelector("#currentTime");
   let finalTime = document.querySelector("#finalTime");
+  let progressBar = document.querySelector(".progress-bar");
   // Tempo finale in minuti e secondi
   audio.addEventListener("loadedmetadata", () => {
     finalTime.innerHTML = `${Math.floor(audio.duration / 60)}:${Math.floor(
       audio.duration % 60
     )}`;
+  });
+  // Tempo corrente in minuti e secondi
+  audio.addEventListener("timeupdate", () => {
+    if (audio.currentTime < 10) {
+      currentTime.innerHTML = `0:0${Math.floor(audio.currentTime % 60)}`;
+    } else {
+      currentTime.innerHTML = `${Math.floor(
+        audio.currentTime / 60
+      )}:${Math.floor(audio.currentTime % 60)}`;
+    }
+    // Aggiornamento progress bar
+    progressBar.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
   });
 }
 // Invochiamo le funzioni per la creazione del media player completo
