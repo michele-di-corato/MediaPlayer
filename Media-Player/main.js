@@ -111,8 +111,8 @@ function createTrack() {
             </div>
             <!-- Tempi -->
             <div class="d-flex justify-content-between">
-              <p class="text-warning">0:00</p>
-              <p class="text-warning">5:00</p>
+              <p id="currentTime" class="text-warning">0:00</p>
+              <p id="finalTime" class="text-warning"></p>
             </div>
             <div class="d-flex justify-content-between mt-3">
               <button id="prev" class="btn btn-outline-warning fs-3">
@@ -147,24 +147,28 @@ function createTrack() {
   next.addEventListener("click", () => {
     if (counter < tracks.length - 1) {
       counter++;
-      createCover();
-      createTrack();
     } else {
       counter = 0;
-      createCover();
-      createTrack();
     }
+    createCover();
+    createTrack();
   });
   prev.addEventListener("click", () => {
     if (counter > 0) {
       counter--;
-      createCover();
-      createTrack();
     } else {
       counter = tracks.length - 1;
-      createCover();
-      createTrack();
     }
+    createCover();
+    createTrack();
+  });
+  let currentTime = document.querySelector("#currentTime");
+  let finalTime = document.querySelector("#finalTime");
+  // Tempo finale in minuti e secondi
+  audio.addEventListener("loadedmetadata", () => {
+    finalTime.innerHTML = `${Math.floor(audio.duration / 60)}:${Math.floor(
+      audio.duration % 60
+    )}`;
   });
 }
 // Invochiamo le funzioni per la creazione del media player completo
