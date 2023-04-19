@@ -80,7 +80,7 @@ function createCover() {
   );
   //   Cover e traccia audio
   div.innerHTML = `
-  <img src="${tracks[counter].cover}" alt="cover" class="img-round" id="cover"/>   
+  <img src="${tracks[counter].cover}" alt="cover" class="img-round paused" id="cover"/>   
   <audio preload="metadata">
     <source
       src="${tracks[counter].url}"
@@ -143,11 +143,11 @@ function createTrack() {
     if (audio.paused) {
       audio.play();
       play.innerHTML = `<i class="fa-solid fa-pause"></i>`;
-      animation.classList.toggle(".running");
+      animation.classList.remove("paused");
     } else {
       audio.pause();
       play.innerHTML = `<i class="fa-solid fa-play"></i>`;
-      animation.classList.toggle(".running");
+      animation.classList.add("paused");
     }
   });
   // Funzione Stop
@@ -155,6 +155,7 @@ function createTrack() {
     audio.pause();
     audio.currentTime = 0;
     play.innerHTML = `<i class="fa-solid fa-play"></i>`;
+    animation.classList.add("paused");
   });
   // Funzione Next
   next.addEventListener("click", () => {

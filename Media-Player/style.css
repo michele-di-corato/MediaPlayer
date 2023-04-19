@@ -17,10 +17,9 @@
   animation-iteration-count: infinite;
   animation-direction: normal;
   animation-timing-function: linear;
-  animation-play-state: paused;
 }
-.running {
-  animation-play-state: running !important;
+.paused {
+  animation-play-state: paused;
 }
 @keyframes spinning {
   from {
