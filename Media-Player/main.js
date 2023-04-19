@@ -152,10 +152,8 @@ function createTrack() {
   });
   // Funzione Stop
   stop.addEventListener("click", () => {
-    audio.pause();
-    audio.currentTime = 0;
-    play.innerHTML = `<i class="fa-solid fa-play"></i>`;
-    animation.classList.add("paused");
+    createCover();
+    createTrack();
   });
   // Funzione Next
   next.addEventListener("click", () => {
